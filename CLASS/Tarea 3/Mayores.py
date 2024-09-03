@@ -8,59 +8,40 @@ Fecha: 3 de Septiembre de 2024
 Autor: Diego Prado Pardo
 =========================================
 """
+def es_mayor_100(num):
+    """ Verifica si un número es mayor a 100
+    (int) -> int
+    """
+    return num > 100
+
 def mayores_100(n1, n2, n3):
+    """Devuelve una cadena de numero separados por comas
+    (int, int, int) -> int, int, int
     """
-    Nos permite saber si los números son mayores a 100
-    """
-    r1, r2, r3 = None, None, None
+    value = []
+    if es_mayor_100(n1):
+        value.append(str(n1))
+    if es_mayor_100(n2):
+        value.append(str(n2))
+    if es_mayor_100(n3):
+        value.append(str(n3))
     
-    if n1 > 100:
-        r1 = n1
-
-    if n2 > 100:
-        r2 = n2
-
-    if n3 > 100:
-        r3 = n3
-
-    if r1 and r2 and r3:
-        return f"{r1},{r2},{r3}"
-    elif r1 and r2:
-        return f"{r1},{r2}"
-    elif r1 and r3:
-        return f"{r1},{r3}"
-    elif r2 and r3:
-        return f"{r2},{r3}"
-    elif r1:
-        return str(r1)
-    elif r2:
-        return str(r2)
-    elif r3:
-        return str(r3)
+    if value:
+        return ','.join(value)
     else:
-        return "Ningún número es mayor que 100"
+        return "Ninguno es mayor que 100"
 
 def main():
-    """
-    Permite el ingreso de los tres números
-    También comprueba si los números son diferentes de cero
-    """
+    """ Permite el ingreso de datos """
     n1 = int(input('Ingrese un primer número diferente de cero: '))
-    if n1 == 0:
-        print("Error: El primer número no puede ser cero.")
-        return
-    
     n2 = int(input('Ingrese un segundo número diferente de cero: '))
-    if n2 == 0:
-        print("Error: El segundo número no puede ser cero.")
-        return
-    
     n3 = int(input('Ingrese un tercer número diferente de cero: '))
-    if n3 == 0:
-        print("Error: El tercer número no puede ser cero.")
-        return
 
-    r = mayores_100(n1, n2, n3)
-    print(r)
+    """ Comprueba si los números son diferentes de cero """
+    if n1 != 0 and n2 != 0 and n3 != 0:
+        resultado = mayores_100(n1, n2, n3)
+        print("Resultado:", resultado)
+    else:
+        print("Error: Todos los números deben ser diferentes de cero.")
 
 main()
