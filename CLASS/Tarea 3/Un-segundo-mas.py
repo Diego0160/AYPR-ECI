@@ -28,7 +28,7 @@ def segundo_mas(h, m, s):
     return h, m, s
 
 def main():
-    h = int(input('Ingrese el valor de la hora (0-23): '))
+    h = int(input('Ingrese el valor de la hora: '))
     m = int(input('Ingrese el valor de los minutos (0-59): '))
     s = int(input('Ingrese el valor de los segundos (0-59): '))
 
