@@ -32,6 +32,7 @@ def tipo_tri(a, b, c):
         return 'Escaleno'
 
 def main():
+    
     a = int(input('Digite la longitud del primer lado: '))
     b = int(input('Digite la longitud del segundo lado: '))
     c = int(input('Digite la longitud del tercer lado: '))
