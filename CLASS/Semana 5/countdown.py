@@ -16,25 +16,21 @@ def leer_entero():
     
     try: 
         valor = int(valor)
-        return(valor)
-
-    except:
+        return valor
+    except ValueError:
         return -1
 
 def mayor_cinco(valor):
     """Valida que el valor ingresado sea mayor que cinco, 
     (int) -> bool"""
-    if valor > 5 :
-        return valor
-    elif valor <= 5:
-        return -1
+    return valor > 5
 
 def countdown(valor):
     """Realiza el conteo regresivo de manera recurrente,
     (int) -> None
     """
     print(valor)
-    valor = valor - 1
+    valor -= 1
     if valor == 0:
         print('Despegando ...')
     else:
@@ -46,7 +42,8 @@ def main():
         if mayor_cinco(valor):
             countdown(valor)
         else:
-            print("El valor ingresado no da tiempo para despegar")
+            print("El valor ingresado no da tiempo para despegar.")
     else:
-        print("El valor ingresado no es un entero")
+        print("El valor ingresado no es un entero.")
+        
 main()
