@@ -16,7 +16,7 @@ def leer_entero():
     
     try: 
         valor = int(valor)
-        return(valor) #Agregar el retornar valor, dado que sigue siendo un str. 
+        return(valor)
 
     except:
         return -1
