@@ -8,7 +8,6 @@ Fecha: 10 de Septiembre de 2024
 Autor: Diego Prado Pardo
 =========================================
 """
-# Extra: Se importa random para el uso de una funcion que obtenga una frase cada vez que se solicite
 def leer_entero():
     """Valida que el valor ingresado sea un entero, 
     () -> int"""
@@ -20,26 +19,27 @@ def leer_entero():
     except:
         return -1
 
-def valor_absoluto():
-    """ Devuelve el valor absoluto de un numero
-    (int) -> int
-    """
+def valor_absoluto(valor):
+    """Devuelve el valor absoluto de un número,
+    (int) -> int"""
     return abs(valor)
-import random
+
+def imprimir_triangulo(n):
+    """Imprime un triángulo de forma recursiva,
+    (int) -> None"""
+    if n > 0:
+        print('*' * n)
+        imprimir_triangulo(n - 1)
 
 def main():
-
-    notas = input("Ingrese tres notas separadas por espacio: ")
-    
-    nota1, nota2, nota3 = map(float, notas.split())
-    
-    nota_promedio = promedio(nota1, nota2, nota3)
-    
-    if nota_promedio >= 4.5:
-        print("¡Felicidades! Obtuvo una nota superior.")
-    elif nota1 >= 4.5 or nota2 >= 4.5 or nota3 >= 4.5:
-        print(mensaje_motivador())
+    valor = leer_entero()
+    if valor != -1:
+        valor = valor_absoluto(valor)
+        if valor == 0:
+            print(":(")
+        else:
+            imprimir_triangulo(valor)
     else:
-        print()
+        print("El valor ingresado no es un entero válido")
 
 main()
