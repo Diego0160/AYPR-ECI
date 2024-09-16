@@ -42,10 +42,10 @@ def mensaje1(origen):
     print(f'Regresando a la estación {origen}')
     sleep(1)
     print(f'Saliendo de la estación {origen}')
-    sleep(2)
+    sleep(1)
     print()
     ini = input(f'Presione el acelerador para continuar ...')
-    sleep(1)
+    sleep(1.5)
 
 def estacion_comidas(pts, origen):
     """Función donde se ganan 100 puntos si se regresa a la estación correcta.
@@ -68,7 +68,7 @@ def estacion_comidas(pts, origen):
         resultado = pts 
     else:
         print("Penalización, la estación dada no coincide con el origen.")
-        resultado = pts - 20
+        resultado = pts - randint(1, 20)
 
     mensaje1(origen)
 
@@ -94,7 +94,9 @@ def estacion_desinfle(pts, origen):
         print("Regreso correcto.")
     else:
         print("Penalización, la estación dada no coincide con el origen.")
-        pts = pts - 10
+        pts = pts - randint(1, 20)
+
+        return 
     
     mensaje1(origen)
 
@@ -225,8 +227,6 @@ def main():
     pts = estacion2(pts)
     pts = estacion3(pts)
     pts = estacion4(pts)
-    pts = estacion5(pts)
-    pts = estacion6(pts)
 
     print("\nRegresando al punto de partida")
     if pts > 130:
