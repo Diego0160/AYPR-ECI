@@ -82,7 +82,7 @@ def estacion_desinfle(pts, origen):
     print('Ingresando a la estación desinfle ...')
     sleep(1)
     print("Lo sentimos, llegó a desinfle.")
-    pts -= 30
+    pts = pts - 30
     try:
         regreso = int(input("Diga número de la estación a la que regresa: "))
     except:
@@ -171,7 +171,7 @@ def estacion4(pts):
             return estacion6(pts + 25)
         else:
             print("Incorrecto, pierdes 2 puntos.")
-            return pts - 2
+            return estacion5(pts - 2)
     except:
         print("Entrada inválida. Inténtalo de nuevo.")
         return estacion4(pts)
