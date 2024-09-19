@@ -11,8 +11,6 @@ Autor: Diego Prado Pardo
 from random import randint
 from time import sleep
 
-estacion6_alcanzada = False
-
 def punto_partida(pts, mensaje=None):
     """Función que retorna un número aleatorio entre 1 y 20 y opcionalmente muestra un mensaje.
     (int, str) -> int"""
@@ -20,18 +18,16 @@ def punto_partida(pts, mensaje=None):
         print(mensaje)
     return randint(1, 20)
 
-def num_primo(n, divisor=None):
+def num_primo(n, divisor=2):
     """Función que verifica si un número es primo.
     (int, int) -> bool"""
-    if n <= 1:
+    if n < 2:
         return False
-    if divisor is None:
-        divisor = n - 1
-    if divisor == 1:
+    if divisor > int(n ** 0.5):
         return True
     if n % divisor == 0:
         return False
-    return num_primo(n, divisor - 1)
+    return  num_primo(n, divisor + 1)
 
 def mensaje1(origen):
     """Función que muestra un mensaje para regresar a la estación indicada y simula la acción de continuar.
@@ -40,12 +36,18 @@ def mensaje1(origen):
     ini = input(f'Presione el acelerador para regresar a la estación {origen} ...')
     print()
     print(f'Regresando a la estación {origen}')
+    print()
+    sleep(1)
+    ini = input('Presione el acelerador para continuar ...')
+    print()
     sleep(1)
     print(f'Saliendo de la estación {origen}')
-    sleep(1)
-    print()
-    ini = input(f'Presione el acelerador para continuar ...')
     sleep(1.5)
+
+def mensaje2(pts):
+    """Función que muestra el total de puntos hasta el momento.
+    (int) -> None"""
+    return print(f'Tienes {pts} puntos hasta el momento')
 
 def estacion_comidas(pts, origen):
     """Función donde se ganan 100 puntos si se regresa a la estación correcta.
@@ -65,14 +67,18 @@ def estacion_comidas(pts, origen):
         return pts - 20
     
     if regreso == origen:
-        resultado = pts 
+        return pts 
     else:
+        rn = randint(1, 20)
         print("Penalización, la estación dada no coincide con el origen.")
-        resultado = pts - randint(1, 20)
-
+        sleep(0.75)
+        print(f"Pierdes {rn} puntos")
+        pts = pts - rn
+        sleep(1)
+        
     mensaje1(origen)
 
-    return resultado
+    return pts
 
 def estacion_desinfle(pts, origen):
     """Función donde se pierden puntos si no se regresa a la estación correcta.
@@ -86,18 +92,20 @@ def estacion_desinfle(pts, origen):
     try:
         regreso = int(input("Diga número de la estación a la que regresa: "))
     except:
+        pts = pts - 10
         print("Entrada inválida, pierdes 10 puntos adicionales.")
         mensaje1(origen)
-        return pts - 10
     
     if regreso == origen:
-        print("Regreso correcto.")
+        return pts
     else:
+        rn = randint(1, 20)
         print("Penalización, la estación dada no coincide con el origen.")
-        pts = pts - randint(1, 20)
+        sleep(0.75)
+        print(f"Pierdes {rn} puntos")
+        pts = pts - rn
+        sleep(1)
 
-        return 
-    
     mensaje1(origen)
 
     return pts
@@ -123,6 +131,7 @@ def estacion1(pts):
 def estacion2(pts):
     """Función donde se pide un número múltiplo de 6 y 8. Si es correcto, suma puntos.
     (int) -> int"""
+    mensaje2(pts)
     print()
     print('Bienvenido a la Estación 2')
     sleep(0.5)
@@ -141,6 +150,7 @@ def estacion2(pts):
 def estacion3(pts):
     """Función donde se pide una palabra de cuatro letras que contenga dos 'a'.
     (int) -> int"""
+    mensaje2(pts)
     print()
     print('Bienvenido a la Estación 3')
     sleep(0.5)
@@ -156,10 +166,13 @@ def estacion3(pts):
 def estacion4(pts):
     """Función donde se piden tres números primos que sumen 63.
     (int) -> int"""
-    global estacion6_alcanzada
+    mensaje2(pts)
     print()
     print('Bienvenido a la Estación 4')
     sleep(0.5)
+    print('Diga tres números primos que sumen 63')
+    print()
+    sleep(0.25)
     try:
         num1 = int(input('Digite el primer número primo: '))
         num2 = int(input('Digite el segundo número primo: '))
@@ -167,7 +180,6 @@ def estacion4(pts):
 
         if num1 + num2 + num3 == 63 and num_primo(num1) and num_primo(num2) and num_primo(num3):
             print("Correcto, ganas 25 puntos.")
-            estacion6_alcanzada = True
             return estacion6(pts + 25)
         else:
             print("Incorrecto, pierdes 2 puntos.")
@@ -179,23 +191,27 @@ def estacion4(pts):
 def estacion5(pts):
     """Función donde se piden dos números cuya suma sea 13 y su producto sea 42.
     (int) -> int"""
-    global estacion6_alcanzada
+    """global estacion6_alcanzada
     if estacion6_alcanzada:
-        return pts
-    
+        return pts"""
+    mensaje2(pts)
     print()
     print('Bienvenido a la Estación 5')
     sleep(0.5)
+    print('Diga dos números cuya suma sea 13 y su producto 42')
+    print()
+    sleep(0.25)
+
     try:
         num1 = int(input('Digite el primer número: '))
         num2 = int(input('Digite el segundo número: '))
         
         if num1 + num2 == 13 and num1 * num2 == 42:
             print("Correcto, ganas 5 puntos.")
-            return pts + 5
+            return estacion6(pts + 5)
         else:
             print("Incorrecto, pierdes 1 punto.")
-            return pts - 1
+            return estacion6(pts - 1)
     except:
         print("Entrada inválida. Inténtalo de nuevo.")
         return estacion5(pts)
@@ -203,7 +219,7 @@ def estacion5(pts):
 def estacion6(pts):
     """Función donde se pide una palabra de cinco letras que termine en 'al'.
     (int) -> int"""
-    global estacion6_alcanzada
+    mensaje2(pts)
     print()
     print('Bienvenido a la Estación 6')
     sleep(0.5)
@@ -211,7 +227,6 @@ def estacion6(pts):
     
     if len(palabra) == 5 and palabra.endswith("al"):
         print("Correcto, ganas 5 puntos.")
-        estacion6_alcanzada = True
         return pts + 5
     else:
         print("Incorrecto, pierdes 2 puntos.")
