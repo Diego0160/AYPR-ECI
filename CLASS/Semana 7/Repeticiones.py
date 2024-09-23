@@ -5,7 +5,6 @@ Grupo 61
 Tema: Repeticiones
 =========================================
 Fecha: 23 de Septiembre de 2024
-Autor: Diego Prado Pardo
 =========================================
 """
 def saludo_recurrente(cont):
