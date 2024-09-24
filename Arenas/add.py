@@ -1,23 +1,16 @@
-def suma(a, b):
-    a = int(a)
-    b = int(b)
-    r = a + b
-    return r
+a = int(input())
+b = int(input())
 
-def main():
-    a = input()
-    b = input()
+r = a + b
 
-    a_int = int(a)
-    b_int = int(b)
-    r = suma(a, b)
+if a < 0:
+    a_str = "(" + str(a) + ")"
+else:
+    a_str = str(a)
 
-    if a_int < 0:
-        a = '('+str(a_int)+')'
-    if b_int < 0:
-        b = '('+str(b_int)+')'
-    r = str(r)
+if b < 0:
+    b_str = "(" + str(b) + ")"
+else:
+    b_str = str(b)
 
-    print(a,'+',b,'=',r)
-
-main()
+print(a_str + "+" + b_str + "=" + str(r))
