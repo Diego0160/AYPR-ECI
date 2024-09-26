@@ -19,7 +19,7 @@ def sumatoria(n):
 
 def main():
     n = int(input('Digite un valor entero: '))
-    
+    sumatoria(n)
     if n > 0:
         A = sumatoria(n)
         print(A)

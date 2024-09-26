@@ -9,8 +9,8 @@ Autor: Diego Prado Pardo
 =========================================
 """
 def es_par(n):
-    """ 
-     """
+    """ Verifica si el numero es par o impar por medio de booleanos
+    (int) -> bool """
     par = n % 2
     if par == 0:
         return True
@@ -19,24 +19,25 @@ def es_par(n):
 
 def main():
     n = int(input('Digite un valor entero positivo: '))
-    es_par(n)
-    
-    while n > 0:
-        n = int(input('Digite otro valor: '))
-        es_par(n)
-        a = 0
-        b = 0
-        while es_par == True:
-            a += 1
-        else:
-            b += 1
+    n_centinela = 0
+    par = 0
+    impar = 0
+    suma_par = 0
+    suma_impar = 0
 
-        suma = a + b
-        print(f'Los valores en total que fueron pares son {a}')
-        print(f'Los valores en total que fueron impares son {b}')
-        print(f'Los valores en total digitados fueron {suma}')
+    try: 
+        while n != n_centinela:
+            if es_par(n):
+                par += 1
+                suma_par += n
+            else:
+                impar += 1
+                suma_impar += n
 
-    else:
-        print('El numero no es mayor a cero.')
+            n = int(input('Digite otro valor: '))
+        print(f'Los valores en total que fueron pares son {par} y su suma es {suma_par}')
+        print(f'Los valores en total que fueron impares son {impar} y su suma es {suma_impar}')
+    except :
+        print('Valor incorrecto, intente nuevamente.')
 
 main()
