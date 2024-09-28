@@ -1,0 +1,25 @@
+Correcciones punto 1 -- Proporcionado por ChatGPT 4o
+
+1. Error en el uso de if mes == True (línea 10):
+    es_mes(mes) devuelve un valor booleano, por lo tanto, deberías comparar directamente if es_mes(mes) en lugar de verificar si mes == True.
+    Solución: Cambia el if mes == True: por if es_mes(mes): y lo mismo para el caso elif.
+
+2. Uso incorrecto de las variables booleanas True y False para mes y num (líneas 10 y 12):
+    El valor devuelto por es_mes(mes) ya es un booleano. No es necesario usar True o False en tu lógica. Deberías usar simplemente if es_mes(mes) y else en lugar de elif es_mes(mes) == False.
+
+3. Lógica incorrecta en pregunta_2 con if num == True (línea 26):
+    num es un entero, no un booleano. Aquí probablemente quisiste usar el resultado de la función uni_dec, pero esta no devuelve un valor booleano adecuado. Deberías revisar el propósito de uni_dec para asegurarte de que devuelva lo correcto.
+    Solución: Modifica la lógica para evaluar la validez de num comparando su valor directamente en lugar de == True.
+
+4. Errores en la función uni_dec (línea 45):
+    El segundo y tercer elif son innecesarios ya que repiten la misma condición num < rnum. El uso de d tampoco es correcto ya que intentas obtener las decenas con num % 1 en lugar de num // 10.
+    Solución: Reorganiza la función para devolver correctamente las unidades y decenas.
+
+5. La función uni_dec no devuelve las decenas y unidades correctamente (línea 48):
+    No estás asignando los valores de u y d correctamente, ya que no se pasa como referencia.
+    Solución: Deberías hacer que la función devuelva ambos valores y asignarlos en pregunta_2.
+
+Cambios importantes:
+    En la función pregunta_1, usé if es_mes(mes) para verificar si el mes es válido en lugar de comparar mes == True.
+    En la función pregunta_2, ahora uni_dec devuelve las unidades y decenas correctamente, y ya no se compara num == True.
+    uni_dec ahora devuelve unidades y decenas correctamente.

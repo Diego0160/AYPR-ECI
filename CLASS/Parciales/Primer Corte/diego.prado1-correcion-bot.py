@@ -18,29 +18,28 @@ def pregunta_1(nota):
     mes = int(input('Diga mes: '))
     
     if es_mes(mes):
-        nota += 2.5
+        nota = nota + 2.5
     else:
         nota += 0
-
+        
     return pregunta_2(nota)
 
 def pregunta_2(nota):
     """ Realiza la segunda pregunta, obtiene su respuesta y devuelve un resultado
-    (float) -> float """
+    (float, int, int) -> float """
     print('Pregunta 2')
     rnum = randint(1, 99)
     num = int(input(f'El número menor que {rnum} es: '))
     
-    u, d = uni_dec(num, rnum)
+    unidades, decenas = uni_dec(num, rnum)
+    print(f'Unidades: {unidades}')
+    print(f'Decenas: {decenas}')
     
-    print(f'Unidades: {u}')
-    print(f'Decenas: {d}')
-
-    if num < rnum:
-        nota += 2.5
-    elif num >= rnum and nota == 0.0:
-        nota += 1.0
-
+    if unidades is not None:
+        nota = nota + 2.5
+    elif nota == 0.0:
+        nota = nota + 1.0
+    
     return nota
 
 def es_mes(mes):
@@ -50,18 +49,18 @@ def es_mes(mes):
 
 def uni_dec(num, rnum):
     """ Entrega unidades y decenas de un número menor que 100
-    (int, int) -> int, int """
+    (int) -> int, int """
     if num < rnum:
-        u = num % 10
-        d = num // 10
-        return u, d
-    return 0, 0
+        unidades = num % 10
+        decenas = num // 10
+        return unidades, decenas
+    return None, None
 
 def main():
     name = input('Diga su Nombre: ')
     nota = pregunta_1(0.0)
 
-    if nota < 3.0 and nota > 2.0:
+    if 2.0 < nota < 3.0:
         mensaje = 'y puede mejorar'
     elif nota < 2.0:
         mensaje = 'y debe citar a supletorio'

@@ -1,0 +1,22 @@
+Correcciones punto 2 -- Proporcionado por ChatGPT 4o
+
+Errores:
+1. El valor de num no se está retornando (línea 18):
+    En la función nombre_dia(num), actualizas el valor de num con el nombre del día, pero no devuelves el valor modificado. Esto significa que el valor de num no cambia en el main() porque el valor de retorno no se está usando.
+    Solución: Debes retornar el valor actualizado de num y capturarlo en la función main().
+
+2. El valor de num no se asigna correctamente en main() (línea 24):
+    Llamas a nombre_dia(num) pero no asignas el resultado a una variable ni la usas en el print().
+    Solución: Asigna el valor de retorno de nombre_dia(num) a una nueva variable o directamente en el print().
+
+
+Mejoras alternativas:
+1. Mejora en la comparación de los días (líneas 4-17):
+    Las comparaciones como num == 1 or num == 8 or num == 15... son repetitivas y difíciles de escalar. Puedes simplificar esto utilizando el operador módulo (%) para determinar el día de la semana basado en el número ingresado. Esto hará que el código sea más conciso y eficiente.
+    Solución alternativa: Utiliza num % 7 para encontrar el día de la semana correspondiente.
+
+
+Detalles de las mejoras:
+1. Uso de una lista de días: En lugar de usar múltiples condiciones con or, he creado una lista dias donde los días de la semana están almacenados. Esto permite acceder directamente al día correcto usando el valor de num % 7.
+2. Uso de módulo (%): Utilicé num % 7 para hacer el código más eficiente y reducir repeticiones. Esto asegura que cualquier número (mayor o menor que 7) se mapee correctamente al día de la semana.
+3. Mejora en la función main(): Ahora el valor retornado de nombre_dia(num) se asigna a dia y se imprime correctamente.
