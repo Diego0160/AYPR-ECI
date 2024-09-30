@@ -1,4 +1,10 @@
+def es_valido(n):
+    if n <= -10000 or n >= 10000:
+        return False
+    return True
+
 def raindrops(n):
+    
     resultado = ""
 
     if n % 3 == 0:
@@ -15,6 +21,12 @@ def raindrops(n):
 
 def main():
     n = int(input())
-    print(raindrops(n))
+    es_valido(n)
+
+    if not es_valido(n):
+        print("Número fuera de rango")
+    else:
+        raindrops(n)
+        print(raindrops(n))
 
 main()
