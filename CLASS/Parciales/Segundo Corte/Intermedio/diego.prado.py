@@ -15,8 +15,7 @@ def main():
 
     while num >= 1:
         num = int(input())
-        num2 = int(num)
-        #num2 = num.append(' ')
+        resp.append(str(num))
 
         
         if num == 0:
@@ -28,10 +27,5 @@ def main():
     else:
         print(ans)
         print(len(num))
-
-
-
-
-
 
 main()
