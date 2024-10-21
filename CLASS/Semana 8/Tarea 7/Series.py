@@ -8,22 +8,27 @@ Fecha: 1 de Octubre de 2024
 Autor: Diego Prado Pardo
 =========================================
 """
-# 
-def serie(n):
-    """ Genera la serie según el número ingresado.
-    (int) -> None """
-    numero_actual = n
+# Corrección hecha
+def imprime_s(num):
+    """ Imprime serie daada
+    (int) -> None
+    """
+    cont_1 = num
+    cont_2 = 1
 
-    while numero_actual > 1:
-        #if numero_actual % 2 == 0:
-            print(str(numero_actual) * (numero_actual))
+    while  cont_1 >= cont_2:
 
-            print(str(numero_actual-1) * (numero_actual-1))
-        #else:
-            numero_actual -= 2
+        print(str(cont_1) * cont_1)
+        print(str(cont_2) * cont_2)
+
+        cont_1 -= 1
+        cont_2 += 1
+
+    if num % 2 == 0:
+        print(str(cont_1) * cont_1)
+
 
 def main():
-    n = int(input())
-    serie(n)
-
+    num = int(input())
+    imprime_s(num)
 main()
