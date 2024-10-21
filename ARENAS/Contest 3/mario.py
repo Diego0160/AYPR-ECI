@@ -19,9 +19,9 @@ def calc(arr):
 
 def main():
     for i in range(int(input().strip())):
-        input()  # Ignorar el número de alturas
+        input()
         nums = list(map(int, input().strip().split()))
         a, b = calc(nums)
-        print(f"Case {i+1}: {a} {b}")
+        print( "Case ", i+1,": ", a b)
 
 main()
