@@ -1,4 +1,4 @@
-from turtle import *
+from turtle import * # type: ignore
 speed(1)
 bgcolor('black')
 color('red')
