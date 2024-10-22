@@ -8,20 +8,26 @@ Programa: Jumping Mario
 Autor: Diego Prado Pardo
 =========================================
 """
-def calc(arr):
-    high, low = 0, 0
-    for i in range(1, len(arr)):
-        if arr[i] > arr[i-1]:
+from sys import stdin
+
+def calc(arr: list[int]):
+    h = arr[0]
+    high, low = 0,0
+    for height in arr[1:]:
+        if height > h:
             high += 1
-        elif arr[i] < arr[i-1]:
-            low += 1
-    return high, low
+        elif height < h:
+            low +=1
+        h = height
 
+    return(high,low)
 def main():
-    for i in range(int(input().strip())):
-        input()
-        nums = list(map(int, input().strip().split()))
-        a, b = calc(nums)
-        print( "Case ", i+1,": ", a b)
+    t = int(stdin.readline().strip())
 
+    for i in range(t):
+        n = int(stdin.readline().strip())
+        nums = [int(i) for i in stdin.readline().strip().split()]
+
+        a,b = calc(nums)
+        print("Case {}: {} {}".format(i+1,a,b))
 main()
