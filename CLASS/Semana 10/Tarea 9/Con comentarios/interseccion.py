@@ -13,14 +13,13 @@ def intersection(n1, n2):
     (str, str) -> list
     """
     interseccion = []
-
     n1 = [int(x) for x in n1]
     n2 = [int(x) for x in n2]
     
     for num in n1:
         if num in n2 and num not in interseccion:
             interseccion.append(num)
-
+    
     interseccion.sort()
     return interseccion
 
@@ -30,7 +29,7 @@ def main():
     
     intersection(n1, n2)
     ans = intersection(n1, n2)
-
+    
     if ans:
         print(" ".join(map(str, ans)))
     else:
