@@ -8,32 +8,29 @@ Fecha: 31 de Octubre de 2024
 Autor: Diego Prado Pardo
 =========================================
 """
+# Correciones del punto 3, 5 y mejor simplificacion al main()
 def secuencia_valores(v):
-    """(list) -> None
-    Imprime los valores de la lista en una sola línea, separados por espacios.
-    """
+    """ Imprime los valores de la lista en una sola línea, separados por espacios.
+    (list) -> None """
     print("Punto 2")
     print(" ".join(v))
 
 def linea(lista):
-    """(list) -> None
-    Imprime cada valor de la lista en una línea separada.
-    """
+    """ Imprime cada valor de la lista en una línea separada.
+    (list) -> None """
     print("Punto 3")
     for v in lista:
         print(v)
 
-def cantidad_e(lista):
-    """(list) -> int
-    Devuelve la cantidad de elementos en la lista.
-    """
+def cantidad_elementos(lista):
+    """ Devuelve la cantidad de elementos en la lista.
+    (list) -> int """
     print("Punto 4")
     return len(lista)
 
 def cantidad_pares(lista):
-    """(list) -> int
-    Devuelve la cantidad de elementos pares en la lista.
-    """
+    """ Devuelve la cantidad de elementos pares en la lista.
+    (list) -> int """
     print("Punto 5")
     count = 0
     for v in lista:
@@ -42,24 +39,20 @@ def cantidad_pares(lista):
     return count
 
 def main():
-    
-    valores = input("Ingrese los valores separados por coma: ")
+    valores = input()
     lista = valores.split(",")
     print("Punto 1")
     print(lista)
 
-    
     secuencia_valores(lista)
-
-    
     linea(lista)
 
     
-    cantidad = cantidad_e(lista)
-    print("Cantidad de elementos:", cantidad)
+    elementos = cantidad_elementos(lista)
+    print(elementos)
 
     
     pares = cantidad_pares(lista)
-    print("Cantidad de valores pares:", pares)
+    print(pares)
 
 main()
