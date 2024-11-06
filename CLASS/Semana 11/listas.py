@@ -189,7 +189,7 @@ def main():
         print("\nDigite el número que desea ejecutar:")
         opcion = int(input())
         
-        if opcion == 0:
+        if opcion == 0: #Opcional, es para darle mas detalles al código
             print("Saliendo del programa...")
             break
         elif opcion == 2:
