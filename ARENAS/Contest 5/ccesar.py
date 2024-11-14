@@ -12,16 +12,16 @@ Autor: Diego Prado Pardo
 def desplazar_letra(letra, k):
     """ Desplaza una letra k posiciones si es letra, sino la devuelve igual 
     (str, int) -> str """
-    mayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    minus = "abcdefghijklmnopqrstuvwxyz"
+    mayus = "ABCDEFGHIJKLMÑNOPQRSTUVWXYZ"
+    minus = "abcdefghijklmñnopqrstuvwxyz"
     
     if letra in mayus:
         pos = mayus.find(letra)
-        return mayus[(pos + k) % 26]
+        return mayus[(pos + k) % 27]
 
     if letra in minus:
         pos = minus.find(letra)
-        return minus[(pos + k) % 26]
+        return minus[(pos + k) % 27]
 
     return letra
 
