@@ -9,36 +9,26 @@ Autor: Diego Prado Pardo
 =========================================
 """
 
-def desplazar_letra(letra, k):
-    """ Desplaza una letra k posiciones si es letra, sino la devuelve igual 
+def cifrar_cadena(texto, k):
+    """ Cifra una cadena desplazando solo las letras k posiciones 
     (str, int) -> str """
-    mayus = "ABCDEFGHIJKLMÑNOPQRSTUVWXYZ"
-    minus = "abcdefghijklmñnopqrstuvwxyz"
-    
-    if letra in mayus:
-        pos = mayus.find(letra)
-        return mayus[(pos + k) % 27]
-
-    if letra in minus:
-        pos = minus.find(letra)
-        return minus[(pos + k) % 27]
-
-    return letra
-
-def cifrar(texto, k):
-    """ Cifra un texto aplicando desplazamiento k a cada letra 
-    (str, int) -> str """
-    ans = ""
-    for letra in texto:
-        ans += desplazar_letra(letra, k)
-    return ans
+    resultado = ""
+    for caracter in texto:
+        if caracter.isalpha():
+            base = 65 if caracter.isupper() else 97
+            nuevo_cod = (ord(caracter) - base + k) % 26
+            resultado += chr(nuevo_cod + base)
+        else:
+            resultado += caracter
+    return resultado
 
 def main():
-    N = int(input())
-    for i in range(N):
-        S = input().strip()
-        K = int(input())
-        ans = cifrar(S, K)
-        print(f"Case{i+1} = {ans}")
+    n = int(input())
+    
+    for i in range(n):
+        texto = input()
+        k = int(input())
+        resultado = cifrar_cadena(texto, k)
+        print(f"Case{i+1} = {resultado}")
 
 main()
