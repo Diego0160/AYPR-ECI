@@ -22,12 +22,10 @@ def calc(arr: list[int]):
 
     return(high,low)
 def main():
-    t = int(stdin.readline().strip())
+    for i in range(int(input().strip())):
+        input()
+        nums = list(map(int, input().strip().split()))
+        a, b = calc(nums)
+        print( "Case ", i+1,": ", a b)
 
-    for i in range(t):
-        n = int(stdin.readline().strip())
-        nums = [int(i) for i in stdin.readline().strip().split()]
-
-        a,b = calc(nums)
-        print("Case {}: {} {}".format(i+1,a,b))
 main()
