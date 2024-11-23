@@ -16,6 +16,8 @@ def lectura(nombre):
     while linea != empty_str:
         linea = g61.readline()
     g61.close()
+
+    return g61
     """char_str = ','
     linea = g61.readline()
     while linea == char_str:
