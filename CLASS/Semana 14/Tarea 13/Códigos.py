@@ -8,16 +8,6 @@ Fecha: 19 de Noviembre de 2024
 Autor: Diego Prado Pardo
 ===========================================
 """
-"""
-===========================================
-AYPR - Algorítmos y programación
-Grupo 61
-Programa: Códigos
-===========================================
-Fecha: 19 de Noviembre de 2024
-Autor: Diego Prado Pardo
-===========================================
-"""
 def codificar_palabra(palabra):
     """ Codifica una palabra siguiendo las reglas dadas.
     (str) -> str """
