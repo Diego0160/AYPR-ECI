@@ -29,6 +29,6 @@ def main():
         texto = input()
         k = int(input())
         resultado = cifrar_cadena(texto, k)
-        print(f"Case{i+1} = {resultado}")
+        print("Case",i+1,"=",resultado)
 
 main()

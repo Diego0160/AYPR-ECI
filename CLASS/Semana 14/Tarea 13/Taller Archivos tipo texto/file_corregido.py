@@ -8,7 +8,7 @@ Fecha: 12 de Noviembre de 2024
 Autor: Diego Prado Pardo
 ===========================================
 """
-def leer_archivo(nombre, separador=','):
+def leer_archivo(nombre, separador=None):
     """ Lee un archivo de texto línea por línea.
     (str, str) -> list """
     archivo = open(nombre, 'r')
@@ -17,42 +17,12 @@ def leer_archivo(nombre, separador=','):
     
     linea = archivo.readline().strip()
     while linea != '':
-        datos = linea.split(separador)
+        datos = linea.split(separador) if separador else linea.split()
         lineas.append(datos)
         linea = archivo.readline().strip()
     
     archivo.close()
     return lineas
-
-def busqueda_lineal(lista, b):
-    """ Realiza una búsqueda lineal en una lista.
-    (list, int) -> int """
-    longitud = 0
-    while longitud < len(lista):
-        if lista[longitud] == b:
-            return longitud
-        longitud += 1
-    return -1
-
-def busqueda_binaria(lista, b):
-    """ Realiza una búsqueda binaria recursiva en una lista ordenada.
-    (list, int) -> int """
-    inicio = lista
-    fin = b
-    def busqueda(inicio, fin):
-        if inicio > fin:
-            return -1
-        
-        medio = (inicio + fin) // 2
-        
-        if lista[medio] == b:
-            return medio
-        elif lista[medio] < b:
-            return busqueda(medio + 1, fin)
-        else:
-            return busqueda(inicio, medio - 1)
-    
-    return busqueda(0, len(lista) - 1)
 
 def merge_sort(lista):
     """ Ordena una lista utilizando el algoritmo de merge sort.
@@ -90,30 +60,47 @@ def merge(izq, der):
     
     return resultado
 
+def busqueda_lineal(lista, b):
+    """ Realiza una búsqueda lineal en una lista.
+    (list, str) -> int """
+    longitud = 0
+    while longitud < len(lista):
+        if lista[longitud] == b:
+            return longitud
+        longitud += 1
+    return -1
+
+def busqueda_binaria(lista, b):
+    """ Realiza una búsqueda binaria recursiva en una lista ordenada.
+    (list, str) -> int """
+    def busqueda(inicio, fin):
+        if inicio > fin:
+            return -1
+        
+        medio = (inicio + fin) // 2
+        
+        if lista[medio] == b:
+            return medio
+        elif lista[medio] < b:
+            return busqueda(medio + 1, fin)
+        else:
+            return busqueda(inicio, medio - 1)
+    
+    return busqueda(0, len(lista) - 1)
+
 def buscar_email(nombre):
     """ Encuentra el correo electrónico de un estudiante dado su nombre.
     (str) -> str """
     datos = leer_archivo('g61.dat')
-    nombre = nombre.upper()
-    
-    i = 0
-    while i < len(datos):
-        if datos[i][1] == nombre:
-            return datos[i][0]
-        i += 1
-    return None
+    nombres = [registro[1].upper() for registro in datos]
+    indice = busqueda_lineal(nombres, nombre)
+    return datos[indice][0] if indice != -1 else None
 
 def ordenar_nombres():
     """ Ordena los nombres de los estudiantes alfabéticamente.
     () -> list """
     datos = leer_archivo('g61.dat')
-    nombres = []
-
-    i = 0
-    while i < len(datos):
-        nombres.append(datos[i][1])
-        i += 1
-    
+    nombres = [registro[1] for registro in datos]
     return merge_sort(nombres)
 
 def ordenar_apellidos_y_nombres_aypr():
@@ -124,23 +111,9 @@ def ordenar_apellidos_y_nombres_aypr():
 
     for registro in datos:
         if len(registro) > 6 and registro[6] == 'AYPR':
-            primer_nombre = registro[0]
-            segundo_nombre = registro[1]
-            primer_apellido = registro[2]
-            segundo_apellido = registro[3]
-            
-            if segundo_nombre:
-                apellidos_nombres.append((primer_nombre, segundo_nombre, primer_apellido, segundo_apellido))
-            else:
-                apellidos_nombres.append((primer_nombre, primer_apellido, segundo_apellido))
+            apellidos_nombres.append((registro[0], registro[1], registro[2], registro[3]))
 
-    n = len(apellidos_nombres)
-    for i in range(n):
-        for j in range(0, n-i-1):
-            if apellidos_nombres[j][2] > apellidos_nombres[j+1][2]:
-                apellidos_nombres[j], apellidos_nombres[j+1] = apellidos_nombres[j+1], apellidos_nombres[j]
-
-    return apellidos_nombres
+    return merge_sort(apellidos_nombres)
 
 def main():
     print("Menú:")
@@ -156,25 +129,16 @@ def main():
         if email:
             print(f"Email: {email}")
         else:
-            # Para evitar errores
-            print("No encontrado ")
+            print("No encontrado")
         
     elif opcion == '2':
         nombres = ordenar_nombres()
-            
-        i = 0
-        while i < len(nombres):
-            print(nombres[i])
-            i += 1
+        for nombre in nombres:
+            print(nombre)
 
     elif opcion == '3':
         apellidos_nombres = ordenar_apellidos_y_nombres_aypr()
         for registro in apellidos_nombres:
-            if len(registro) == 4:
-                primer_nombre, segundo_nombre, primer_apellido, segundo_apellido = registro
-                print(f"{primer_apellido} {segundo_apellido} {primer_nombre} {segundo_nombre}")
-            else:
-                primer_nombre, primer_apellido, segundo_apellido = registro
-                print(f"{primer_apellido} {segundo_apellido} {primer_nombre}") 
+            print(" ".join(registro))
         
 main()

@@ -54,7 +54,7 @@ def insertion_sort(lista):
             j -= 1
             time += 1
         lista[j + 1] = clave
-        time += 1
+        time += 1   
     return lista, time
 
 def medir_time(lista):
