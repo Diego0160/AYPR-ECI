@@ -26,13 +26,12 @@ def ventarron(m, n, orden):
     """ Simula el efecto del ventarrón sobre las repisas, el cual retorna la organización final.
     (int, int, list) -> list """
     for k in range(m):
-        if 2 in orden[k]:
-            continue
-
         for i in range(n - 2, -1, -1):
             if orden[k][i] == 1:
                 j = i
                 while j + 1 < n and orden[k][j + 1] == 0:
+                    if orden[k][j + 1] == 2:
+                        break
                     orden[k][j], orden[k][j + 1] = orden[k][j + 1], orden[k][j]
                     j += 1
     return orden
@@ -50,3 +49,19 @@ def main():
     imprimir_repisas(orden_final)
 
 main()
+
+"""
+5 5
+
+1 0 0 2 0
+1 0 1 1 0
+2 0 1 0 1
+1 0 1 1 0
+1 1 1 2 0
+
+0 0 1 2 0
+0 0 1 1 1
+2 0 0 1 1
+0 0 1 1 1
+1 1 1 2 0
+"""
